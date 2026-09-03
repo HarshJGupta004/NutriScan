@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NutriScan — Nutrition Facts, From a Photo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">NS</div>
+      <span class="brand-word">NUTRI<em>SCAN</em></span>
+    </div>
+    <nav class="auth-nav" id="authNav">
+      <button class="btn btn-ghost" id="btnShowLogin">Sign In</button>
+      <button class="btn btn-solid" id="btnShowRegister">Create Account</button>
+    </nav>
+    <nav class="auth-nav hidden" id="userNav">
+      <span class="user-pill">👤 <span id="userNameLabel"></span></span>
+      <button class="btn btn-ghost" id="btnLogout">Log Out</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Serving Size&nbsp;·&nbsp;1 Photo&nbsp;&nbsp;|&nbsp;&nbsp;Servings Per Analysis&nbsp;·&nbsp;1</p>
+      <h1 class="hero-title">Every plate<br/>has a label.<br/>We just read it.</h1>
+      <p class="hero-sub">Upload a photo of any meal or packaged food. NutriScan identifies it, estimates the nutrition facts, and scores how it fits into your day — no barcode required.</p>
+      <a href="#scan" class="btn btn-solid btn-lg">Scan a Food →</a>
+    </div>
+    <div class="hero-facts" aria-hidden="true">
+      <div class="hero-facts-row"><span>Calories</span><span>—</span></div>
+      <div class="hero-facts-row thin"><span>Protein</span><span>—</span></div>
+      <div class="hero-facts-row thin"><span>Carbohydrates</span><span>—</span></div>
+      <div class="hero-facts-row thin"><span>Health Score</span><span>—</span></div>
+      <p class="hero-facts-caption">Actual values determined per photo.</p>
+    </div>
+  </section>
+
+  <section class="scan" id="scan">
+    <div class="scan-inner">
+
+      <div class="panel upload-panel">
+        <h2 class="panel-title">Ingredients Panel</h2>
+        <p class="panel-sub">Drop a photo in, or choose one from your device.</p>
+
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <div id="dropzoneEmpty" class="dropzone-empty">
+            <div class="dropzone-icon">＋</div>
+            <p>Drag a photo here or click to browse</p>
+            <span class="dropzone-hint">PNG or JPG</span>
+          </div>
+          <img id="previewImg" class="preview-img hidden" alt="Selected food preview" />
+        </label>
+        <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg" hidden />
+
+        <button class="btn btn-solid btn-lg btn-block" id="btnAnalyze" disabled>Analyze Nutrition</button>
+        <p class="scan-note" id="scanNote">Sign in to analyze a photo.</p>
+      </div>
+
+      <div class="panel results-panel" id="resultsPanel">
+        <div id="resultsEmpty" class="results-empty">
+          <p>Your nutrition label will appear here once a photo is analyzed.</p>
+        </div>
+
+        <div id="resultsLoading" class="results-loading hidden">
+          <div class="spinner"></div>
+          <p>Reading the label…</p>
+        </div>
+
+        <div id="resultsContent" class="hidden"></div>
+      </div>
+
+    </div>
+
+    <div class="history-strip hidden" id="historyStrip">
+      <h3 class="history-title">Your Recent Scans</h3>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>NutriScan is an estimate from an AI model, not medical or dietary advice.</p>
+</footer>
+
+<!-- Auth modal (login / register in one popup, never a separate page) -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tabLogin" data-mode="login">Sign In</button>
+      <button class="modal-tab" id="tabRegister" data-mode="register">Create Account</button>
+    </div>
+
+    <form id="formLogin" class="modal-form">
+      <label>Email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>Password
+        <input type="password" name="password" required autocomplete="current-password" />
+      </label>
+      <p class="form-error hidden" id="loginError"></p>
+      <button type="submit" class="btn btn-solid btn-block">Sign In</button>
+    </form>
+
+    <form id="formRegister" class="modal-form hidden">
+      <label>Name
+        <input type="text" name="name" required autocomplete="name" />
+      </label>
+      <label>Email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>Password
+        <input type="password" name="password" required minlength="6" autocomplete="new-password" />
+      </label>
+      <p class="form-hint">At least 6 characters.</p>
+      <p class="form-error hidden" id="registerError"></p>
+      <button type="submit" class="btn btn-solid btn-block">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

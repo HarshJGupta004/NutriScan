@@ -9,7 +9,7 @@ same nutrition fields, health score, and classification as the original.
 
 - **Backend:** Node.js, Express
 - **Database:** MongoDB (Mongoose) — stores users (hashed passwords) and a short
-  history of each user's past scans
+  history of each user's past scans.
 - **Auth:** JWT, issued on register/login, sent as `Authorization: Bearer <token>`
 - **AI:** Google Gemini (`@google/genai`), same prompt/JSON contract as the Python version
 - **Frontend:** Plain HTML/CSS/JS, single page — login/register open as a modal, never

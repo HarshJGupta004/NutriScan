@@ -2,7 +2,7 @@
 
 A rebuild of the original Streamlit/Python NutriScan app as a Node.js/Express web app
 with account registration and sign-in, both handled through a single pop-up modal
-(no separate page or tab). Photo analysis still runs on Google Gemini and keeps the
+(no separate page or tab). Photo analysis still runs on Google Gemini and keeps the,
 same nutrition fields, health score, and classification as the original.
 
 ## Stack
